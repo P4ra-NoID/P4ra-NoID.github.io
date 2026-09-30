@@ -86,7 +86,7 @@
 
   <div id="overlay">
     <div id="dialog">
-      <img id="dialog-image" src="logo.png" alt="">
+      <img id="dialog-image" src="logo (3).png" alt="">
       <button id="ok-button" aria-label="OK"></button>
     </div>
   </div>
@@ -115,7 +115,7 @@
         dialogNumber = 1;
 
         setTimeout(function() {
-          dialogImage.src = "logo (1).png";
+          dialogImage.src = "logo.png";
 
           // 出現アニメーションをもう一度
           dialog.style.animation = "none";
@@ -129,6 +129,20 @@
         dialogNumber = 2;
 
         setTimeout(function() {
+          dialogImage.src = "logo (1).png";
+
+          // 出現アニメーションをもう一度
+          dialog.style.animation = "none";
+          dialog.offsetHeight;
+          dialog.style.animation = "popup-in 0.35s ease-out";
+        }, 1000);
+
+      } else if (dialogNumber === 2) {
+
+        // 1秒後に4枚目
+        dialogNumber = 3;
+
+        setTimeout(function() {
           dialogImage.src = "logo (2).png";
 
           // 出現アニメーションをもう一度
@@ -139,9 +153,9 @@
 
       } else {
 
-        // 3枚目のOK → 最初のポップアップに戻る
+        // 4枚目のOK → 最初のポップアップに戻る
         dialogNumber = 0;
-        dialogImage.src = "logo.png";
+        dialogImage.src = "logo (3).png";
 
         // 出現アニメーションをもう一度
         dialog.style.animation = "none";
