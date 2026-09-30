@@ -72,12 +72,12 @@
 
   <div id="background"></div>
 
+  <button onclick="localStorage.removeItem('dreamSheepPopupSeen'); location.reload();"
+  style="position:fixed; z-index:100; top:10px; left:10px;">
+    ポップアップをリセット
+  </button>
+
   <div id="overlay">
-    <div id="dialog">
-      <img id="dialog-image" src="logo.png" alt="">
-      <button id="ok-button" aria-label="OK"></button>
-    </div>
-  </div>
 
   <script>
     const dialogImage = document.getElementById("dialog-image");
@@ -92,6 +92,3 @@
         overlay.style.display = "block";
       }, 2000);
 
-      <script>
-  localStorage.removeItem("dreamSheepPopupSeen");
-</script>
