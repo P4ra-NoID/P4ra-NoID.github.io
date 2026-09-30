@@ -6,15 +6,14 @@
   <title>dream sheep</title>
 
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
     }
 
-    /* 仮ホームページの背景 */
+    /* ホームページの背景 */
     #background {
       position: fixed;
       inset: 0;
@@ -51,14 +50,13 @@
     /* OKボタンのクリック範囲 */
     #ok-button {
       position: absolute;
-      left: 38.5%;
+      left: 68%;
       top: 67%;
       width: 22%;
-      height: 25%;
+      height: 24%;
 
-      /* 位置確認用 */
-      opacity: 0.5;
-      background: red;
+      /* クリック範囲を見えなくする */
+      opacity: 0;
 
       cursor: pointer;
       border: none;
@@ -69,20 +67,34 @@
 
 <body>
 
-  <!-- 仮ホームページの背景 -->
   <div id="background"></div>
 
-  <!-- ポップアップ -->
   <div id="overlay">
     <div id="dialog">
-      <img src="logo.png" alt="">
+      <img id="dialog-image" src="logo.png" alt="">
       <button id="ok-button" aria-label="OK"></button>
     </div>
   </div>
 
   <script>
-    document.getElementById("ok-button").addEventListener("click", function() {
-      alert("OKを押しました！");
+    const dialogImage = document.getElementById("dialog-image");
+    const okButton = document.getElementById("ok-button");
+    const overlay = document.getElementById("overlay");
+
+    let secondDialog = false;
+
+    okButton.addEventListener("click", function() {
+
+      if (!secondDialog) {
+        // 2枚目のダイアログに変更
+        dialogImage.src = "logo (1).png";
+        secondDialog = true;
+
+      } else {
+        // 2枚目のOKを押したらポップアップを消す
+        overlay.style.display = "none";
+      }
+
     });
   </script>
 
