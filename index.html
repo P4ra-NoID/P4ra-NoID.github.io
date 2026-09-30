@@ -29,8 +29,6 @@
       inset: 0;
       background: rgba(0, 0, 0, 0.45);
       z-index: 10;
-
-      /* 最初は非表示 */
       display: none;
     }
 
@@ -58,7 +56,6 @@
       width: 22%;
       height: 24%;
 
-      /* クリック範囲を見えなくする */
       opacity: 0;
 
       cursor: pointer;
@@ -84,25 +81,39 @@
     const okButton = document.getElementById("ok-button");
     const overlay = document.getElementById("overlay");
 
-    let secondDialog = false;
+    let dialogNumber = 0;
 
-    // ページを開いて2秒後にポップアップを表示
+    // ページを開いて2秒後に最初のポップアップを表示
     setTimeout(function() {
       overlay.style.display = "block";
     }, 2000);
 
     okButton.addEventListener("click", function() {
 
-      if (!secondDialog) {
-        // 1秒待ってから2枚目を表示
+      if (dialogNumber === 0) {
+
+        // 1秒後に2枚目
+        dialogNumber = 1;
+
         setTimeout(function() {
           dialogImage.src = "logo (1).png";
-          secondDialog = true;
+        }, 1000);
+
+      } else if (dialogNumber === 1) {
+
+        // 1秒後に3枚目
+        dialogNumber = 2;
+
+        setTimeout(function() {
+          dialogImage.src = "logo (2).png";
         }, 1000);
 
       } else {
-        // 2枚目のOKを押したらポップアップを消す
-        overlay.style.display = "none";
+
+        // 3枚目のOK → 最初のポップアップに戻る
+        dialogNumber = 0;
+        dialogImage.src = "logo.png";
+
       }
 
     });
