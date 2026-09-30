@@ -29,9 +29,6 @@
       inset: 0;
       background: rgba(0, 0, 0, 0.45);
       z-index: 10;
-
-      /* 最初は非表示 */
-      display: none;
     }
 
     /* ポップアップを画面中央に置く */
@@ -72,12 +69,12 @@
 
   <div id="background"></div>
 
-  <button onclick="localStorage.removeItem('dreamSheepPopupSeen'); location.reload();"
-  style="position:fixed; z-index:100; top:10px; left:10px;">
-    ポップアップをリセット
-  </button>
-
   <div id="overlay">
+    <div id="dialog">
+      <img id="dialog-image" src="logo.png" alt="">
+      <button id="ok-button" aria-label="OK"></button>
+    </div>
+  </div>
 
   <script>
     const dialogImage = document.getElementById("dialog-image");
@@ -86,9 +83,20 @@
 
     let secondDialog = false;
 
-    // ポップアップを見ていなければ、2秒後に表示
-    if (localStorage.getItem("dreamSheepPopupSeen") !== "true") {
-      setTimeout(function() {
-        overlay.style.display = "block";
-      }, 2000);
+    okButton.addEventListener("click", function() {
 
+      if (!secondDialog) {
+        // 2枚目のダイアログに変更
+        dialogImage.src = "logo (1).png";
+        secondDialog = true;
+
+      } else {
+        // 2枚目のOKを押したらポップアップを消す
+        overlay.style.display = "none";
+      }
+
+    });
+  </script>
+
+</body>
+</html>
