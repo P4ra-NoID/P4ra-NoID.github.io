@@ -6,17 +6,25 @@
   <title>dream sheep</title>
 
   <style>
-    /* 仮ホームページ */
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* 仮ホームページの背景 */
+    #background {
+      position: fixed;
+      inset: 0;
       background-image: url("https://raw.githubusercontent.com/P4ra-NoID/P4ra-NoID.github.io/refs/heads/main/ipicture-birthday-cake-10215274_1920.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    /* ポップアップ表示中の暗い部分 */
+    /* 後ろを暗くする */
     #overlay {
       position: fixed;
       inset: 0;
@@ -24,7 +32,7 @@
       z-index: 10;
     }
 
-    /* ポップアップ */
+    /* ポップアップを画面中央に置く */
     #dialog {
       position: absolute;
       width: 375px;
@@ -43,14 +51,12 @@
     /* OKボタンのクリック範囲 */
     #ok-button {
       position: absolute;
-
       left: 39%;
-      top: 68%;
+      top: 66%;
+      width: 22%;
+      height: 25%;
 
-      width: 18%;
-      height: 22%;
-
-      /* 今は位置確認用 */
+      /* 位置確認用 */
       opacity: 0.5;
       background: red;
 
@@ -62,6 +68,9 @@
 </head>
 
 <body>
+
+  <!-- 仮ホームページの背景 -->
+  <div id="background"></div>
 
   <!-- ポップアップ -->
   <div id="overlay">
