@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>眠れる子羊の館</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
@@ -17,10 +22,51 @@
     #background {
       position: fixed;
       inset: 0;
-      background-image: url("1000000501.webp");
+      background-image: url("aug032026.webp");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+    }
+
+    /* 電光掲示板 */
+    #ticker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+
+      background: #111;
+      overflow: hidden;
+      white-space: nowrap;
+
+      display: flex;
+      align-items: center;
+
+      z-index: 5;
+    }
+
+    /* 流れる文字 */
+    #ticker-text {
+      display: inline-block;
+      padding-left: 100%;
+
+      color: cyan;
+      font-family: "DotGothic16", sans-serif;
+      font-size: 18px;
+      line-height: 40px;
+
+      animation: ticker-scroll 12s linear infinite;
+    }
+
+    @keyframes ticker-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
     }
 
     /* 後ろを暗くする */
@@ -63,7 +109,7 @@
       padding: 0;
     }
 
-    /* ポップアップが中央から「ぽんっ」と出るアニメーション */
+    /* ポップアップアニメーション */
     @keyframes popup-in {
       0% {
         transform: translate(-50%, -50%) scale(0);
@@ -83,6 +129,13 @@
 <body>
 
   <div id="background"></div>
+
+  <!-- 電光掲示板 -->
+  <div id="ticker">
+    <div id="ticker-text">
+      ★このページは、スマホで見ることをおすすめします★
+    </div>
+  </div>
 
   <div id="overlay">
     <div id="dialog">
@@ -161,7 +214,6 @@
         dialog.style.animation = "none";
         dialog.offsetHeight;
         dialog.style.animation = "popup-in 0.35s ease-out";
-
       }
 
     });
