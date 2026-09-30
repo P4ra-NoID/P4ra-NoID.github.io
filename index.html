@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>眠れる子羊の館</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>眠れる子羊の館</title>  <!-- Google Fonts -->  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">  <style>
     html, body {
       margin: 0;
       width: 100%;
@@ -47,25 +41,30 @@
     }
 
     /* 流れる文字 */
+    #ticker-track {
+      display: flex;
+      width: max-content;
+
+      animation: ticker-scroll 20s linear infinite;
+    }
+
     #ticker-text {
-  display: inline-block;
-  padding-left: 100%;
+      display: flex;
+      flex-shrink: 0;
 
-  font-family: "DotGothic16", sans-serif;
-  font-size: 18px;
-  line-height: 40px;
+      font-family: "DotGothic16", sans-serif;
+      font-size: 18px;
+      line-height: 40px;
+    }
 
-  animation: ticker-scroll 20s linear infinite;
-}
+    #ticker-text .message {
+      color: cyan;
+    }
 
-#ticker-text .message {
-  color: cyan;
-}
-
-#ticker-text .separator {
-  color: #777;
-  margin: 0 12px;
-}
+    #ticker-text .separator {
+      color: #777;
+      margin: 0 12px;
+    }
 
     @keyframes ticker-scroll {
       0% {
@@ -73,7 +72,7 @@
       }
 
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
       }
     }
 
@@ -131,31 +130,28 @@
         transform: translate(-50%, -50%) scale(1);
       }
     }
-  </style>
-</head>
-
-<body>
-
-  <div id="background"></div>
-
-  <!-- 掲示板 -->
-  <div id="ticker">
-  <div id="ticker-text">
-   <span class="separator">│</span>
-   <span class="message">★このページは、スマホで見ることをおすすめします★</span>
-    <span class="message">お知らせは特にありません。現在改装工事中！乞うご期待！</span>
-    <span class="separator">│</span>
-  </div>
-</div>
-
-  <div id="overlay">
+  </style></head><body>  <div id="background"></div>  <!-- 掲示板 -->  <div id="ticker">
+    <div id="ticker-track">
+      <div id="ticker-text">
+        <span class="message">★このページは、スマホで見ることをおすすめします★</span>
+        <span class="separator">│</span>
+        <span class="message">お知らせは特にありません。現在改装工事中！乞うご期待！</span>
+        <span class="separator">│</span>
+      </div>
+    </div>
+  </div>  <div id="overlay">
     <div id="dialog">
       <img id="dialog-image" src="logo (3).png" alt="">
       <button id="ok-button" aria-label="OK"></button>
     </div>
-  </div>
+  </div>  <script>
+    const tickerText = document.getElementById("ticker-text");
+    const tickerTrack = document.getElementById("ticker-track");
 
-  <script>
+    // 文章を自動で複製して繋げるンゴよ
+    const tickerClone = tickerText.cloneNode(true);
+    tickerTrack.appendChild(tickerClone);
+
     const dialogImage = document.getElementById("dialog-image");
     const okButton = document.getElementById("ok-button");
     const overlay = document.getElementById("overlay");
@@ -228,7 +224,5 @@
       }
 
     });
-  </script>
-
-</body>
+  </script></body>
 </html>
